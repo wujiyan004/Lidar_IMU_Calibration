@@ -153,13 +153,13 @@ Thanks for [Livox Technology](https://www.livoxtech.com/) for equipment support.
 
 ## 6. Run FAST-LIO2 with LI-Init Results
 
-The most important parameters for FAST-LIO are the **extrinsic rotation and translation matrix**, and the **time offset**. 
+FAST-LIO最重要的参数是外部旋转和平移矩阵以及时间偏移。
 
-For the same device setup (the relative pose between IMU and LiDAR is fixed), **you can just write the extrinsic into FAST-LIO's configuration file**.
+对于相同的设备设置（IMU和激光雷达之间的相对姿态是固定的），您只需将外部的写入FAST-LIO的配置文件即可。
 
-As for time offset, it depends on the synchronization mechanism of the lidar and IMU. For pixhawk IMU, as far as I know, the timestamp is PC time. If the lidar's timestamp is also PC time, then the time offset might be the same. You can bypass temporal initialization next time. But for some lidars like Livox avia/horizon, the timestamp origin is the moment when the lidar is powered on. So, if you power it off and power it on again, the timestamp counts from 0. In this condition, temporal initialization is necessary at each time the lidar is powered on. So, you can run LI-Init once, record the time offset; then power off the lidar and IMU for minutes, then power on them and calibrate time offset again. **If the time offset are close,** it means you may **bypass time offset initialization** next time. Just **write down the time offset into time_diff_lidar_to_imu** of FAST-LIO's configuration file.
+至于时间偏移，则取决于激光雷达和IMU的同步机制。对于pixhawk IMU，据我所知，时间戳是PC时间。如果激光雷达的时间戳也是PC时间，那么时间偏移可能是相同的。下次可以绕过临时初始化。但对于Livox avia/horizon等一些激光雷达来说，时间戳的起源是激光雷达开机的那一刻。因此，如果你关闭电源并再次开机，时间戳从0开始计数。在这种情况下，每次激光雷达通电时都需要进行时间初始化。因此，您可以运行一次LI Init，记录时间偏移；然后关闭激光雷达和IMU几分钟，然后打开它们并再次校准时间偏移。如果时间偏移量接近，则意味着下次可以绕过时间偏移初始化。只需将时间偏移量写入FAST-LIO的配置文件的time_diff_lidar_to_imu即可。
 
-As for IMU bias and gravity, FAST-LIO can refine them online. You don't need to write these prameters.
+至于IMU偏差和重力，FAST-LIO可以在线对其进行细化。你不需要写这些婴儿车。
 
 ## 7. License
 
